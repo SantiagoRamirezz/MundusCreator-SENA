@@ -1,0 +1,259 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:html5="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+
+        <section class="vh-75 ">
+            <div class="mask d-flex align-items-center h-75">
+                <div class="container h-100 mt-5 mb-5">
+                    <div class="row d-flex justify-content-center align-items-center h-100">
+                        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                            <div class="bg-secondary" style="border-radius: 15px;">
+                                <div class="card-body p-5 text-light">
+                                    <h2 class="text-uppercase text-center mb-5">Editar Multimedia</h2>
+
+                                    <div class="text-center mb-5">
+                                        <h6 class="mb-1 me-4">videos: </h6>
+                                        <table>
+                                            <c:forEach items="#{multimediaSession.mulExt.videosCollection}" var="vi">
+                                                <thead>
+                                                    <tr>
+                                                         <th scope="col">
+                                                             <iframe width="250px" height="175px" src="#{vi.vidRutaVideo}"
+                                                                title="YouTube video player" frameborder="0"
+                                                                allow="accelerometer; autoplay; clipboard-write; 
+                                                                encrypted-media; gyroscope; picture-in-picture">
+                                                        </iframe>
+                                                    </th>
+                                                    </tr>
+                                                   
+                                                </thead>
+
+                                            </c:forEach>
+                                        </table>
+
+                                    </div>
+
+                                    <div class="text-center mb-5">
+                                        <h6 class="mb-1 me-4">Imágenes: </h6>
+                                        <table >
+                                            <c:forEach items="#{multimediaSession.mulExt.imagenesCollection}" var="im">
+                                                <thead>
+                                                    <tr>
+                                                    <th scope="col">
+                                                        <img src="#{im.imgRutaImg}" class="mt-3" alt="" height="auto" width="250px"/>
+                                                    </th>
+                                                    </tr>
+                                                    
+                                                </thead>
+
+                                            </c:forEach>
+                                        </table>
+                                    </div>
+
+                                    <h:form>
+                                        <div class="form-outline mb-4">
+                                            <h:inputText html5:type="text" 
+                                                         id="formMultimedia"
+                                                         class="form-control form-control-lg   was-validated"
+                                                         required="true"
+                                                         requiredMessage="Ingresa la descripcion de la multimedia"
+                                                         html5:placeholder="Descripcion de la multimedia"
+                                                         value="#{multimediaSession.mulExt.mulDescripcion}"
+                                                         />
+                                            <h:message for="formMultimedia" style="color: red"/>
+
+
+                                        </div>
+
+
+                                        <div class="modal-footer">
+
+                                            <button 
+                                                type="button" 
+                                                class="btn btn-block text-light" 
+                                                style="background-color: red"
+                                                data-bs-toggle="modal" 
+                                                data-bs-target="#modalEliminarMultimedia"
+                                                >
+                                                Eliminar    
+                                            </button>
+
+                                            <h:commandButton 
+                                                class="btn btn-block text-light"
+                                                value="Guardar"
+                                                style="background-color: #4b0081"
+                                                action="#{multimediaSession.editarMultimedia()}"
+                                                >
+                                            </h:commandButton>
+
+
+
+                                            <button type="button"
+                                                    class="btn text-light "
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#añadirImagen"
+                                                    style="background-color: green">
+                                                <i class="bi bi-plus-circle-dotted me-1"  style="color: white"/>Imagen
+                                            </button>
+
+                                            <button type="button"
+                                                    class="btn text-light "
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#añadirVideo"
+                                                    style="background-color: green">
+                                                <i class="bi bi-plus-circle-dotted me-1"  style="color: white"/>Video
+                                            </button>
+                                        </div>
+
+                                    </h:form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <div class="modal fade" id="añadirImagen" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header bg-secondary">
+                        <h5 class="modal-title" id="staticBackdropLabel">Subir Imagen</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body bg-secondary">
+
+                        <div class="row d-flex justify-content-center align-items-center h-100">
+                            <h:form>
+<h6 class="mb-1 me-4">Imagen: </h6>
+                                <div class="form-group mb-4">
+                                    <h:selectOneMenu required="true"
+                                                     value="#{multimediaSession.idIma}"
+                                                     requiredMessage="Ingresa el id de la imagen"
+                                                     class="form-select form-select-md mb-3 "
+                                                     html5:aria-label=".form-select-md examplemultiple"  
+                                                     id="formIdIma"
+                                                     >
+                                        <f:selectItem itemLabel="Selecciona..." itemValue="" html5:disabled="true" html5:selected="true"/>
+                                        <c:forEach items="#{imagenesSession.leerImagen()}" var="im">
+                                            <f:selectItem itemLabel="#{im.imgDescripcion}" itemValue="#{im.pkImgId}">
+                                            </f:selectItem>
+                                        </c:forEach>
+                                    </h:selectOneMenu>
+                                    <h:message for="formIdIma" style="color: red"/>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button"
+                                            class="btn btn-block btn-dark "
+                                            data-bs-dismiss="modal">Cerrar</button>
+                                    <h:commandButton 
+                                        class="btn btn-block text-light"
+                                        value="Guardar"
+                                        style="background-color: #4b0081"
+                                        action="#{multimediaSession.añadirImagen()}"
+                                        >
+                                    </h:commandButton>
+                                </div>
+                            </h:form>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="añadirVideo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header bg-secondary">
+                        <h5 class="modal-title" id="staticBackdropLabel">Subir Video</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body bg-secondary">
+
+                        <div class="row d-flex justify-content-center align-items-center h-100">
+                            <h:form>
+
+
+                                <h6 class="mb-1 me-4">Video: </h6>
+                                <div class="form-group mb-4">
+                                    <h:selectOneMenu required="true"
+                                                     value="#{multimediaSession.idVid}"
+                                                 requiredMessage="Ingresa el id del video"
+                                                     class="form-select form-select-md mb-3 "
+                                                     html5:aria-label=".form-select-md examplemultiple"  
+                                                     id="formIdVid"
+                                                     >
+                                        <f:selectItem itemLabel="Selecciona..." itemValue="" html5:disabled="true" html5:selected="true"/>
+                                        <c:forEach items="#{videosSession.leerVideos()}" var="vi">
+                                            <f:selectItem itemLabel="#{vi.vidDescripcion}" itemValue="#{vi.pkVidId}">
+                                            </f:selectItem>
+                                        </c:forEach>
+                                    </h:selectOneMenu>
+                                    <h:message for="formIdVid" style="color: red"/>
+                                </div>
+                                
+                                <div class="modal-footer">
+                                    <button type="button"
+                                            class="btn btn-block btn-dark "
+                                            data-bs-dismiss="modal">Cerrar</button>
+                                    <h:commandButton 
+                                        class="btn btn-block text-light"
+                                        value="Guardar"
+                                        style="background-color: #4b0081"
+                                        action="#{multimediaSession.añadirVideo()}"
+                                        >
+                                    </h:commandButton>
+                                </div>
+                            </h:form>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <h:form>
+            <div class="modal fade" id="modalEliminarMultimedia" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header text-center text-light bg-secondary">
+                            <h5 class="modal-title" id="modalEliminarMultimediaLabel">¿Estás seguro que quieres eliminar la Multimedia?</h5>
+                            <button type="button" class="btn-close bg-light" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body text-center bg-secondary">
+                            <button type="button" class="btn btn-dark " data-bs-dismiss="modal">Cerrar</button>
+
+                            <h:commandButton 
+                                class="btn btn-block text-light ms-3"
+                                value="Eliminar"
+                                style="background-color: red"
+                                action="#{multimediaSession.eliminarMultimedia()}"
+                                >
+                            </h:commandButton>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </h:form>
+
+    </ui:composition>
+</html>
+

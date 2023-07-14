@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:html5="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:composition>
+
+        <!--tablas-->
+
+        <section class="vh-75 ">
+            <h:form>
+                <div class="container h-100 mt-5 mb-5">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+
+                    <div class="bg-secondary" style="border-radius: 15px;">
+                        <div class="card-body p-5 text-light">
+                            <h2 class="text-uppercase text-center mb-5">Hola #{usuarioSession.usuLog.usuNombre} #{usuarioSession.usuLog.usuApellido} !!!</h2>
+                            <div class="text-center mb-5">
+                                <img src="#{usuarioSession.usuLog.usuFoto}" class="rounded-pill" alt="" height="210px" width="230px"/>
+                            </div>
+
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-dark table-hover table-sm text-center text-light" id="listcurso">
+                                    <thead>
+                                        <h1 class="text-light"><small>Mis cursos</small></h1>
+                                        <tr>
+                                            <th scope="col"></th>
+                                            <th scope="col">Nombre</th>
+                                            <th scope="col">Descripción</th>
+                                            <th scope="col">Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <c:forEach items="#{usuarioSession.usuLog.cursosCollection}" var="cur">
+                                            <tr>
+                                                <td scope="row"><img src="#{cur.curImagen}"
+                                                                 alt="" width="100px" heigh="20px" border="radius" class=""/></td>
+                                                <td scope="row">#{cur.curNombre}</td>
+                                                <td scope="row">#{cur.curDescripcion}</td>
+                                                <td scope="row">
+                                                    <h:commandButton
+                                                        class="btn text-light" 
+                                                        style="background-color: #4b0081;"
+                                                        value="Ver contenido"
+                                                        action="#{usuarioSession.seleccionarMiCurso(cur)}"
+                                                        />
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </h:form>
+            
+        </section>
+
+
+
+
+    </ui:composition>
+</html>
+

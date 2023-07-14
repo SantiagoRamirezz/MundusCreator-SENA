@@ -1,0 +1,581 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:html5="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition>
+        
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 col-xxl-6">     
+                    <h:form>
+                        <div class="table-responsive">
+                        <table class="table table-secondary table-striped mb-5 table-sm" id="listImagen" >
+                            <thead><h1 class="text-dark"><small>Documentos
+                                        <button type="button"
+                                                class="btn text-light "
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#subirDocumento"
+                                                style="background-color: green">
+                                            <i class="bi bi-cloud-upload me-1"/>Subir
+                                        </button>
+
+                                    </small>
+
+                                </h1>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Descripción</th>
+                                    <th scope="col">Ruta</th>
+                                    <th scope="col">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <c:forEach items="#{documentoSession.leerDocumento()}" var="do">
+                                    <tr>
+
+                                        <td scope="row">#{do.pkDocId}</td>
+                                        <td scope="row">#{do.docNombre}</td>
+                                        <td scope="row">#{do.docDescripcion}</td>
+                                        <td scope="row">#{do.docRuta}</td>
+
+                                        <td>
+
+                                            <p:commandButton 
+                                                action="#{documentoSession.encontrarDocumento(do)}"
+                                                icon="bi bi-pencil-square"
+                                                class="btn "
+                                                style="background-color: #4b0081; border: #4b0081;"
+                                                >
+                                            </p:commandButton>
+
+
+                                        </td>
+
+
+                                    </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
+                        </div>
+                    </h:form>
+                </div>
+
+                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 col-xxl-6"> 
+                    <h:form>
+                        <div class="table-responsive">
+                        <table class="table table-secondary table-striped mb-5 table-sm" id="listImagen" >
+                            <thead><h1 class="text-dark"><small>Actividades
+                                        <button type="button"
+                                                class="btn text-light "
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#subirActividad"
+                                                style="background-color: green">
+                                            <i class="bi bi-cloud-upload me-1"/>Subir
+                                        </button>
+
+                                    </small>
+
+                                </h1>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Descripción</th>
+                                    <th scope="col">Ruta</th>
+                                    <th scope="col">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <c:forEach items="#{actividadSession.leerActividad()}" var="ac">
+                                    <tr>
+
+                                        <td scope="row">#{ac.pkActId}</td>
+                                        <td scope="row">#{ac.actNombre}</td>
+                                        <td scope="row">#{ac.actDescripcion}</td>
+                                        <td scope="row">#{ac.actRuta}</td>
+
+                                        <td>
+
+                                            <p:commandButton 
+                                                action="#{actividadSession.encontrarActividad(ac)}"
+                                                icon="bi bi-pencil-square"
+                                                class="btn "
+                                                style="background-color: #4b0081; border: #4b0081;"
+                                                >
+                                            </p:commandButton>
+
+
+                                        </td>
+
+
+                                    </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+
+
+            <div class="row text-center">    
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6 col-xxl-6"> 
+                    <h:form>
+                        <div class="table-responsive">
+                        <table class="table table-secondary table-striped mb-5 table-sm" id="listImagen" >
+                            <thead><h1 class="text-dark"><small>Evaluaciones
+                                        <button type="button"
+                                                class="btn text-light "
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#subirEvaluacion"
+                                                style="background-color: green">
+                                            <i class="bi bi-cloud-upload me-1"/>Subir
+                                        </button>
+                                    </small>
+
+                                </h1>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Descripción</th>
+                                    <th scope="col">Ruta</th>
+                                    <th scope="col">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <c:forEach items="#{evaluacionesSession.leerEvaluacion()}" var="ev">
+                                    <tr>
+
+                                        <td scope="row">#{ev.pkEvaId}</td>
+                                        <td scope="row">#{ev.evaNombre}</td>
+                                        <td scope="row">#{ev.evaDescripcion}</td>
+                                        <td scope="row">#{ev.evaRuta}</td>
+
+                                        <td>
+
+                                            <p:commandButton 
+                                                action="#{evaluacionesSession.encontrarEvaluacion(ev)}"
+                                                icon="bi bi-pencil-square"
+                                                class="btn "
+                                                style="background-color: #4b0081; border: #4b0081;"
+                                                >
+                                            </p:commandButton>
+
+
+                                        </td>
+
+
+                                    </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 ">
+                    <h:form>
+                        <div class="table-responsive">
+                        <table class="table table-secondary table-striped mb-5 table-sm" id="listpapeleria" >
+                            <thead><h1 class="text-dark"><small>Papeleria
+                                        <button type="button"
+                                                class="btn text-light "
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#crearPapeleria"
+                                                style="background-color: green">
+                                            <i class="bi bi-cloud-upload me-1"/>Subir
+                                        </button>
+                                    </small>
+
+                                </h1>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Descripción</th>
+                                    <th scope="col">Documentos</th>
+                                    <th scope="col">Actividades</th>
+                                    <th scope="col">Evaluaciones</th>
+                                    <th scope="col">Editar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <c:forEach items="#{papeleriaSession.leerPapeleria()}" var="pa">
+                                    <tr>
+
+                                        <td scope="row">#{pa.pkPapId}</td>
+                                        <td scope="row">#{pa.papDescripcion}</td>
+                                        <c:forEach items="#{pa.documentosCollection}" var="do">
+                                            <td scope="row">#{do.docNombre}</td>
+                                        </c:forEach>
+                                        <c:forEach items="#{pa.actividadesCollection}" var="ac">
+                                            <td scope="row">#{ac.actNombre}</td>
+                                        </c:forEach>
+                                        <c:forEach items="#{pa.evaluacionesCollection}" var="ev">
+                                            <td scope="row">#{ev.evaNombre}</td>
+                                        </c:forEach>
+                                        <td>
+                                            <p:commandButton 
+                                                action="#{papeleriaSession.encontrarPapeleria(pa)}"
+                                                icon="bi bi-pencil-square"
+                                                class="btn "
+                                                style="background-color: #4b0081; border: #4b0081;"
+                                                >
+                                            </p:commandButton>
+
+                                        </td>    
+
+
+                                    </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Modal Documentos-->
+        <div class="modal fade" id="subirDocumento" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header bg-secondary">
+                        <h5 class="modal-title" id="staticBackdropLabel">Subir Documento</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body bg-secondary">
+
+                        <div class="row d-flex justify-content-center align-items-center h-100">
+                            <h:form>
+                                <div class="form-outline mb-2  ">
+
+                                    <h:inputText
+                                        value="#{documentoSession.docCre.docNombre}"
+                                        html5:type="text"
+                                        id="formDocNom"
+                                        class="form-control form-control-lg   was-validated"
+                                        required="true"
+                                        requiredMessage="Agregar Nombre al documento"
+                                        html5:placeholder="Nombre del documento"
+                                        />
+                                    <h:message for="formDocNom" style="color: red"/>
+
+                                </div>
+
+                                <div class="form-outline mb-2  ">
+
+                                    <h:inputText html5:type="text"
+                                                 id="formDescripcionDoc"
+                                                 class="form-control form-control-lg   was-validated"
+                                                 required="true"
+                                                 requiredMessage="Ingresa Descripción del documento"
+                                                 html5:placeholder="Descripción del documento"
+                                                 value="#{documentoSession.docCre.docDescripcion}"
+                                                 />
+                                    <h:message for="formDescripcionDoc" style="color: red"/>
+
+                                </div>
+
+                                <div class="form-outline mb-2  ">
+
+                                    <h:inputText html5:type="text"
+                                                 id="formRutaDoc"
+                                                 class="form-control form-control-lg   was-validated"
+                                                 required="true"
+                                                 requiredMessage="Ingresa Ruta del documento"
+                                                 html5:placeholder="Ruta del documento"
+                                                 value="#{documentoSession.docCre.docRuta}"
+                                                 />
+                                    <h:message for="formRutaDoc" style="color: red"/>
+
+                                </div>
+
+
+
+
+                                <div class="modal-footer">
+                                    <button type="button"
+                                            class="btn btn-block btn-dark mb-4"
+                                            data-bs-dismiss="modal">Cerrar</button>
+                                    <h:commandButton 
+                                        class="btn btn-block text-light mb-4"
+                                        value="Subir"
+                                        style="background-color: #4b0081"
+                                        action="#{documentoSession.crearDocumento()}">
+                                    </h:commandButton>
+
+                                </div>
+                            </h:form>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Modal Actividad-->
+        <div class="modal fade" id="subirActividad" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header bg-secondary">
+                        <h5 class="modal-title" id="staticBackdropLabel">Subir Actividad</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body bg-secondary">
+
+                        <div class="row d-flex justify-content-center align-items-center h-100">
+                            <h:form>
+                                <div class="form-outline mb-2  ">
+
+                                    <h:inputText html5:type="text"
+
+                                                 id="formNomAct"
+                                                 class="form-control form-control-lg   was-validated"
+                                                 required="true"
+                                                 requiredMessage="Ingresa el nombre de la actividad"
+                                                 html5:placeholder="Nombre de la Actividad"
+                                                 value="#{actividadSession.actCre.actNombre}"
+                                                 />
+                                    <h:message for="formNomAct" style="color: red"/>
+
+                                </div>
+
+                                <div class="form-outline mb-2  ">
+
+                                    <h:inputText html5:type="text"
+
+                                                 id="formVideoDescripcion"
+                                                 class="form-control form-control-lg   was-validated"
+                                                 required="true"
+                                                 requiredMessage="Ingresa la descripción de la actividad"
+                                                 html5:placeholder="Descripción de la Actividad"
+                                                 value="#{actividadSession.actCre.actDescripcion}"
+                                                 />
+                                    <h:message for="formVideoDescripcion" style="color: red"/>
+
+                                </div>
+
+                                <div class="form-outline mb-2  ">
+
+                                    <h:inputText html5:type="text"
+
+                                                 id="formRutaAct"
+                                                 class="form-control form-control-lg   was-validated"
+                                                 required="true"
+                                                 requiredMessage="Ingresa la Ruta de la actividad"
+                                                 html5:placeholder="Ruta de la Actividad"
+                                                 value="#{actividadSession.actCre.actRuta}"
+                                                 />
+                                    <h:message for="formRutaAct" style="color: red"/>
+
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button"
+                                            class="btn btn-block btn-dark mb-4"
+                                            data-bs-dismiss="modal">Cerrar</button>
+                                    <h:commandButton 
+                                        class="btn btn-block text-light mb-4"
+                                        value="Subir"
+                                        style="background-color: #4b0081"
+                                        action="#{actividadSession.crearActividad()}"
+                                        >
+                                    </h:commandButton>
+                                </div>
+                            </h:form>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Evaluación-->
+        <div class="modal fade" id="subirEvaluacion" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header bg-secondary">
+                        <h5 class="modal-title" id="staticBackdropLabel">Subir Evaluación</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body bg-secondary">
+
+                        <div class="row d-flex justify-content-center align-items-center h-100">
+                            <h:form>
+                                <div class="form-outline mb-4">
+                                    <h:inputText html5:type="text" 
+                                                 id="formNombreEva"
+                                                 class="form-control form-control-lg   was-validated"
+                                                 required="true"
+                                                 requiredMessage="Ingresa el nombre de la Evaluación"
+                                                 html5:placeholder="Nombre de la Evaluación"
+                                                 value="#{evaluacionesSession.evaCre.evaNombre}"
+                                                 />
+                                    <h:message for="formNombreEva" style="color: red"/>
+                                </div>
+
+                                <div class="form-outline mb-4">
+                                    <h:inputText html5:type="text" 
+                                                 id="formDescripcionEva"
+                                                 class="form-control form-control-lg   was-validated"
+                                                 required="true"
+                                                 requiredMessage="Ingresa la descripcion de la Evaluación"
+                                                 html5:placeholder="Descripcion de la Evaluación"
+                                                 value="#{evaluacionesSession.evaCre.evaDescripcion}"
+                                                 />
+                                    <h:message for="formDescripcionEva" style="color: red"/>
+
+
+                                </div>
+
+
+                                <div class="form-outline mb-4">
+                                    <h:inputText html5:type="text" 
+                                                 id="formRutaEva"
+                                                 class="form-control form-control-lg   was-validated"
+                                                 required="true"
+                                                 requiredMessage="Ingresa la ruta de la Evaluación"
+                                                 html5:placeholder="Ruta de la Evaluación"
+                                                 value="#{evaluacionesSession.evaCre.evaRuta}"
+                                                 />
+                                    <h:message for="formRutaEva" style="color: red"/>
+
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button"
+                                            class="btn btn-block btn-dark mb-4"
+                                            data-bs-dismiss="modal">Cerrar</button>
+                                    <h:commandButton 
+                                        class="btn btn-block text-light mb-4"
+                                        value="Subir"
+                                        style="background-color: #4b0081"
+                                        action="#{evaluacionesSession.crearEvaluacion()}"
+                                        >
+                                    </h:commandButton>
+                                </div>
+                            </h:form>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        
+         <!-- Modal Papeleria-->
+        <div class="modal fade" id="crearPapeleria" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header bg-secondary">
+                        <h5 class="modal-title" id="staticBackdropLabel">Subir Papeleria</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body bg-secondary">
+
+                        <div class="row d-flex justify-content-center align-items-center h-100">
+                            <h:form>
+                                <div class="form-outline mb-4">
+                                    <h:inputText html5:type="text" 
+                                                 id="formPapeleria"
+                                                 class="form-control form-control-lg   was-validated"
+                                                 required="true"
+                                                 requiredMessage="Ingresa la descripcion de la multimedia"
+                                                 html5:placeholder="Descripcion de la papelería"
+                                                 value="#{papeleriaSession.papCre.papDescripcion}"
+                                                 />
+                                    <h:message for="formPapeleria" style="color: red"/>
+                                    
+                                </div>
+                                <h6 class="mb-1 me-4">Actividad: </h6>
+                                <div class="form-group mb-4">
+                                    <h:selectOneMenu required="true"
+                                                     value="#{papeleriaSession.idAct}"
+                                                     requiredMessage="Ingresa el id de la Actividad"
+                                                     class="form-select form-select-md mb-3 "
+                                                     html5:aria-label=".form-select-md examplemultiple"  
+                                                     id="formIdACT"
+                                                     >
+                                        <f:selectItem itemLabel="Selecciona..." itemValue="" html5:disabled="true" html5:selected="true"/>
+                                        <c:forEach items="#{actividadSession.leerActividad()}" var="ac">
+                                            <f:selectItem itemLabel="#{ac.actNombre}" itemValue="#{ac.pkActId}">
+                                            </f:selectItem>
+                                        </c:forEach>
+                                    </h:selectOneMenu>
+                                    <h:message for="formIdACT" style="color: red"/>
+                                </div>
+                                
+                                <h6 class="mb-1 me-4">Evaluacón: </h6>
+                                <div class="form-group mb-4">
+                                    <h:selectOneMenu required="true"
+                                                     value="#{papeleriaSession.idEva}"
+                                                     requiredMessage="Ingresa el id de la Evaluación"
+                                                     class="form-select form-select-md mb-3 "
+                                                     html5:aria-label=".form-select-md examplemultiple"  
+                                                     id="formIdEVA"
+                                                     >
+                                        <f:selectItem itemLabel="Selecciona..." itemValue="" html5:disabled="true" html5:selected="true"/>
+                                        <c:forEach items="#{evaluacionesSession.leerEvaluacion()}" var="ev">
+                                            <f:selectItem itemLabel="#{ev.evaNombre}" itemValue="#{ev.pkEvaId}">
+                                            </f:selectItem>
+                                        </c:forEach>
+                                    </h:selectOneMenu>
+                                    <h:message for="formIdEVA" style="color: red"/>
+                                </div>
+
+                               
+                                <h6 class="mb-1 me-4">Documento: </h6>
+                                <div class="form-group mb-4">
+                                    <h:selectOneMenu required="true"
+                                                     value="#{papeleriaSession.idDoc}"
+                                                     requiredMessage="Ingresa el id del Documento"
+                                                     class="form-select form-select-md mb-3 "
+                                                     html5:aria-label=".form-select-md examplemultiple"  
+                                                     id="formIdDOC"
+                                                     >
+                                        <f:selectItem itemLabel="Selecciona..." itemValue="" html5:disabled="true" html5:selected="true"/>
+                                        <c:forEach items="#{documentoSession.leerDocumento()}" var="do">
+                                            <f:selectItem itemLabel="#{do.docNombre}" itemValue="#{do.pkDocId}">
+                                            </f:selectItem>
+                                        </c:forEach>
+                                    </h:selectOneMenu>
+                                    <h:message for="formIdDOC" style="color: red"/>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button"
+                                            class="btn btn-block btn-dark mb-4"
+                                            data-bs-dismiss="modal">Cerrar</button>
+                                    <h:commandButton 
+                                        class="btn btn-block text-light mb-4"
+                                        value="Subir"
+                                        style="background-color: #4b0081"
+                                        action="#{papeleriaSession.crearPapeleria()}"
+                                        >
+                                    </h:commandButton>
+                                </div>
+                            </h:form>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </ui:composition>
+</html>

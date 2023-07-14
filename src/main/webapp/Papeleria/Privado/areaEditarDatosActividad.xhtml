@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:html5="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+
+        <section class="vh-75 ">
+            <div class="mask d-flex align-items-center h-75">
+                <div class="container h-100 mt-5 mb-5">
+                    <div class="row d-flex justify-content-center align-items-center h-100">
+                        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                            <div class="bg-secondary" style="border-radius: 15px;">
+                                <div class="card-body p-5 text-light">
+                                    <h2 class="text-uppercase text-center mb-5">Editar Actividad</h2>
+                                    <h:form>
+                                        <div class="form-outline mb-2  ">
+
+                                            <h:inputText html5:type="text"
+
+                                                         id="formNomAct"
+                                                         class="form-control form-control-lg   was-validated"
+                                                         required="true"
+                                                         requiredMessage="Ingresa el nombre de la actividad"
+                                                         html5:placeholder="Nombre de la Actividad"
+                                                         value="#{actividadSession.actExt.actNombre}"
+                                                         />
+                                            <h:message for="formNomAct" style="color: red"/>
+
+                                        </div>
+
+                                        <div class="form-outline mb-2  ">
+
+                                            <h:inputText html5:type="text"
+
+                                                         id="formVideoDescripcion"
+                                                         class="form-control form-control-lg   was-validated"
+                                                         required="true"
+                                                         requiredMessage="Ingresa la descripción de la actividad"
+                                                         html5:placeholder="Descripción de la Actividad"
+                                                         value="#{actividadSession.actExt.actDescripcion}"
+                                                         />
+                                            <h:message for="formVideoDescripcion" style="color: red"/>
+
+                                        </div>
+
+                                        <div class="form-outline mb-2  ">
+
+                                            <h:inputText html5:type="text"
+
+                                                         id="formRutaAct"
+                                                         class="form-control form-control-lg   was-validated"
+                                                         required="true"
+                                                         requiredMessage="Ingresa la Ruta de la actividad"
+                                                         html5:placeholder="Ruta de la Actividad"
+                                                         value="#{actividadSession.actExt.actRuta}"
+                                                         />
+                                            <h:message for="formRutaAct" style="color: red"/>
+
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button 
+                                                type="button" 
+                                                class="btn btn-block text-light" 
+                                                style="background-color: red"
+                                                data-bs-toggle="modal" 
+                                                data-bs-target="#modalEliminarActividad"
+                                                >
+                                                Eliminar    
+                                            </button>
+                                            <h:commandButton 
+                                                class="btn btn-block text-light"
+                                                value="Guardar"
+                                                style="background-color: #4b0081"
+                                                action="#{actividadSession.editarActividad()}"
+                                                >
+                                            </h:commandButton>
+                                        </div>
+                                    </h:form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <h:form>
+            <div class="modal fade" id="modalEliminarActividad" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header text-center text-light bg-secondary">
+                            <h5 class="modal-title" id="modalEliminarActividadLabel">¿Estás seguro que quieres eliminar la actividad?</h5>
+                            <button type="button" class="btn-close bg-light" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body text-center bg-secondary">
+                            <button type="button" class="btn btn-dark " data-bs-dismiss="modal">Cerrar</button>
+
+                            <h:commandButton 
+                                class="btn btn-block text-light ms-3"
+                                value="Eliminar"
+                                style="background-color: red"
+                                action="#{actividadSession.eliminarActividad()}"
+                                >
+                            </h:commandButton>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </h:form>
+    </ui:composition>
+</html>
+

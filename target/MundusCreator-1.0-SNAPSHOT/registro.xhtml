@@ -1,0 +1,224 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:html5="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <meta charset="UTF-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+        <link rel="stylesheet" href="assets/css/normal/Estilo_Inicio_sesion.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css"/>
+        <link rel="shortcut icon" href="assets/IMG/Logo2.png"/>
+        <link href="assets/css/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <title>Registro</title>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    </h:head>
+
+    <h:body style="background-color: #acabad">
+        <!--BARRA NVA-->
+
+
+        <nav class="navbar navbar-expand-sm navbar-dark" style="background:-webkit-linear-gradient(top,black,rgb(24, 23, 91));">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.xhtml">
+                    <img src="assets/IMG/Logolargo.jpeg" alt="logo" width="280" height="55"/>
+                </a>
+                <!--inicio y registro-->
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto me-5 mb-2 mb-lg-0 ">
+                        <li class="nav-item">
+                            <a class="nav-link active text-light" aria-current="page" href="javascript:history.back()">Volver</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!--Formulario-->
+
+        <section class="vh-75 ">
+            <div class="mask d-flex align-items-center h-75">
+                <div class="container h-100 mt-5 mb-5">
+                    <div class="row d-flex justify-content-center align-items-center h-100">
+                        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                            <div class="bg-secondary" style="border-radius: 15px;">
+                                <div class="card-body p-5 text-light">
+                                    <h2 class="text-uppercase text-center mb-5">Crear Cuenta</h2>
+
+                                    <h:form class="row g-3 ">
+
+                                        <div class="form-outline mb-4  ">
+                                            <h:inputText
+                                                value="#{usuarioSession.usuReg.usuNombre}"
+                                                html5:type="text"
+                                                id="formNombre"
+                                                class="form-control form-control-lg   was-validated"
+                                                required="true"
+                                                requiredMessage="Ingresa un nombre(s)"
+                                                html5:placeholder="Nombre(s)"
+                                                />
+                                            <h:message for="formNombre" style="color: red"/>
+
+                                        </div>
+
+                                        <div class="form-outline mb-4  ">
+
+                                            <h:inputText html5:type="text"
+                                                         id="formApellido"
+                                                         class="form-control form-control-lg was-validated"
+                                                         required="true"
+                                                         requiredMessage="Ingresa un apellido(s)"
+                                                         html5:placeholder="Apellido(s)"
+                                                         value="#{usuarioSession.usuReg.usuApellido}"
+                                                         />
+                                            <h:message for="formApellido" style="color: red"/>
+                                        </div>
+                                        <h6 class="mb-1 me-4">Tipo de Documento: </h6>
+                                        <div class="form-group">
+                                            <h:selectOneMenu required="true"
+                                                             value="#{usuarioSession.usuReg.usuTipodedato}"
+                                                             requiredMessage="Ingresa el Tipo de Documento"
+                                                             class="form-select form-select-sm mb-3 w-50 "
+                                                             html5:aria-label=".form-select-sm examplemultiple"  
+                                                             id="formTipoDocumento"
+                                                             >
+                                                <f:selectItem itemLabel="Selecciona..." itemValue="" html5:disabled="ttrue" html5:selected="true"/>
+                                                <f:selectItems value="#{usuarioSession.listaTipDoc}"/>
+                                            </h:selectOneMenu>
+                                            <h:message for="formTipoDocumento" style="color: red"/>
+                                        </div>
+                                        <div class="form-outline mb-4  ">
+                                            <h:inputText html5:type="text"
+                                                         id="formDocumento"
+                                                         class="form-control form-control-lg was-validated"
+                                                         required="true"
+                                                         requiredMessage="Ingresa el Número de Documento"
+                                                         html5:placeholder="Número de Documento"
+                                                         value="#{usuarioSession.usuReg.pkUsuId}"
+                                                         />
+                                            <h:message for="formDocumento" style="color: red"/>
+                                        </div>
+
+                                        <!--Genero-->
+                                        <h6 class="mb-1 me-4">Genero: </h6>
+
+                                        <div class="mb-3  ">
+                                            <p:selectOneRadio id="genero" value="#{usuarioSession.usuReg.usuGenero}" 
+                                                              required="true" requiredMessage="Ingresa una opción">
+                                                <f:selectItem itemLabel="Masculino" itemValue="Masculino" />
+                                                <f:selectItem itemLabel="Femenino" itemValue="Femenino"/>
+                                                <f:selectItem itemLabel="Otro" itemValue="Otro"/>
+                                            </p:selectOneRadio>
+                                            <h:message for="genero" style="color: red"/>
+                                        </div>
+
+                                        <!--oooooooooooooo-->
+                                        <div class="form-outline mb-4">
+                                            <h:inputText html5:type="email" 
+                                                         id="formCorreo"
+                                                         class="form-control form-control-lg was-validated"
+                                                         required="true"
+                                                         requiredMessage="Ingresa un correo válido"
+                                                         html5:placeholder="Correo electrónico"
+                                                         value="#{usuarioSession.usuReg.usuCorreo}"
+                                                         />
+                                            <h:message for="formCorreo" style="color: red"/>
+
+
+                                        </div>
+
+                                        <div class="form-outline mb-4">
+                                            <h:inputSecret html5:type="password" 
+                                                           id="formContrasenha"
+                                                           class="form-control form-control-lg was-validated"
+                                                           required="true"
+                                                           requiredMessage="Ingresa una contraseña válida"
+                                                           html5:placeholder="Contraseña"
+                                                           value="#{usuarioSession.usuReg.usuContrasenha}"
+                                                           />
+                                            <h:message for="formContrasenha" style="color: red"/>
+                                        </div>
+
+
+                                        <h6 class="mb-1 me-4">Fecha de nacimiento: </h6>
+
+                                        <h:message for="fechaNacimiento" style="color: red"/>
+                                        <div class="form-outline mb-4  ">
+
+                                            <h:inputText html5:type="date"
+                                                         id="fechaNacimiento"
+                                                         class="form-control form-control-lg was-validated"
+                                                         required="true"
+                                                         requiredMessage="Ingresa fecha de nacimiento"
+                                                         value="#{usuarioSession.usuReg.usuFechanac}"
+                                                         />
+                                        </div>
+
+                                        <div class="form-outline mb-4  ">
+
+                                            <h:inputText html5:type="text"
+                                                         id="NomUser"
+                                                         class="form-control form-control-lg  was-validated"
+                                                         required="true"
+                                                         requiredMessage="Ingresa el nombre de usuario"
+                                                         html5:placeholder="Nombre de usuario"
+                                                         value="#{usuarioSession.usuReg.usuNomusu}"
+                                                         />
+                                            <h:message for="NomUser" style="color: red"/>
+                                        </div>
+
+
+                                        <div class="form-check d-flex justify-content-center mb-5 was-validated">
+                                            <input class="form-check-input me-2" type="checkbox" value=""
+                                                   id="form2Example3cg" style="background-color: #4b0081;" required=""/>
+                                            <h:outputLabel class="form-check-label" for="form2Example3g">
+                                                Acepto los <a href="#!" class="text-body"><u
+                                                        class="text-light">Terminos y condiciones</u></a>
+                                            </h:outputLabel>
+                                        </div>
+                                        <div class="d-flex justify-content-center ">
+
+                                            <h:commandButton value="Registrar"
+                                                             action="#{usuarioSession.crearUsuario()}" 
+                                                             class="btn btn-success btn-block btn-lg  text-light border-dark"
+                                                             style="background-color: #4b0081; border: #4b0081;"></h:commandButton>
+                                        </div>
+                                        <p class="text-center  mt-5 mb-0 text-light">¿Ya tienes cuenta? 
+                                            <a href="inicio_sesion.xhtml" class="fw-bold text-body text-light"><u class="text-light">Ingresar</u></a></p>
+
+                                    </h:form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+
+
+
+
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+
+    </h:body>
+
+
+</html>
+

@@ -1,0 +1,130 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:html5="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+         <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="assets/css/normal/Estilo_Inicio_sesion.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" />
+  <link rel="shortcut icon" href="assets/IMG/Logo2.png" />
+  <link href="assets/css/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+  
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    </h:head>
+
+    <h:body style="background-color: #acabad"> 
+      
+  <nav class="navbar navbar-expand-sm navbar-dark text-light" style="background:-webkit-linear-gradient(top,black,rgb(24, 23, 91));">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.xhtml">
+        <img src="assets/IMG/Logolargo.jpeg" alt="logo" width="280" height="55" />
+      </a>
+      <!--inicio y registro-->
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto me-5 mb-2 mb-lg-0 ">
+          <li class="nav-item">
+            <a class="nav-link active text-light " aria-current="page" href="javascript:history.back()">Volver</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+        
+  <!--Formulario-->
+  <section class="vh-100 text-light">
+    <div class="container mt-5 h-75">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div class="bg-secondary" style="border-radius: 15px;">
+            <div class="card-body p-5 text-center bg-secondary">
+
+              <h3 class="mb-5">Iniciar Sesión</h3>
+
+              <h:form class="row g-3" >
+                  <h:message for="email_id" style="color:red"></h:message>
+                <div class="form-outline mb-4">
+                  <h:inputText 
+                   html5:type="email"
+                   required="true"
+                   requiredMessage="Ingresa un correo valido"
+                   id="email_id" 
+                   class="form-control form-control-lg "
+                   html5:placeholder="Ingresar Email"
+                   value="#{usuarioSession.correoForm}"/>
+                  <label class="form-label" for="email_id ">Email</label>
+                </div>
+                <h:message for="email_id" style="color:red"></h:message>
+                <div class="form-outline mb-4">
+                  <h:inputSecret
+                   html5:type="password" 
+                   required="true"
+                   requiredMessage="Ingresa un correo valido"
+                   id="contraseña_id" 
+                   class="form-control form-control-lg  "
+                   
+                   html5:placeholder="Ingresar Contraseña"
+                   value="#{usuarioSession.claveForm}"/>
+                  <label class="form-label" for="contraseña_id">Contraseña</label>
+                 
+                </div>
+
+                <!-- Checkbox -->
+                <div class="form-check d-flex justify-content-start mb-4 ">
+                  <h:inputText 
+                  class="form-check-input  "
+                  html5:type="checkbox"
+                  id="form1Example3"
+                  style="background-color: #4b0081;" />
+                  <label class="me-1 form-check-label" for="form1Example3">
+                    Recordar Contraseña
+                  </label>
+                </div>
+
+                
+                  <h:commandButton 
+                   class="btn  btn-lg btn-block text-light" 
+                   style="background-color: #4b0081;" 
+                   value="Ingresar"
+                   action="#{usuarioSession.validarUsuario()}">
+                  </h:commandButton>
+
+                 <hr class="my-4"/>
+                 
+                 <p class="text-center  mt-3 mb-2 text-light">¿Olvidaste tú contraseña? 
+                  <a href="recovery.xhtml" class="fw-bold text-body text-light"><u class="text-light">Recuperar</u></a></p>
+                   <p class="text-center  mt-3 mb-2 text-light">¿No tienes cuenta? 
+                  <a href="registro.xhtml" class="fw-bold text-body text-light"><u class="text-light">Registrar</u></a></p>
+
+
+              <button class="btn btn-lg btn-block mt-2 mb-2" style="background-color: #dd4b39;" type="submit"><i
+                  class="fab fa-google me-2"></i> Ingresa con google</button>
+              <button class="btn btn-lg btn-block mb-2" style="background-color: #3b5998;" type="submit"><i
+                  class="fab fa-facebook-f me-2"></i>Ingresa con facebook</button>
+               
+
+
+              </h:form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="container-fluid">
+  </div>
+  
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+    </h:body>
+</html>
+

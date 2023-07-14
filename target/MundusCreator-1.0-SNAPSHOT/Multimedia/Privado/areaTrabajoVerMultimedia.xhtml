@@ -1,0 +1,404 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:html5="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition>
+
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6 col-xxl-6">   
+                    <h:form>
+                        <div class="table-responsive">
+                            <table class="table table-secondary table-striped  mb-5 table-sm " id="listVideo"  >
+                                <thead><h1 class="text-dark"><small>Videos
+                                            <button type="button"
+                                                    class="btn text-light "
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#subirVideo"
+                                                    style="background-color: green">
+                                                <i class="bi bi-cloud-upload me-1"/>Subir
+                                            </button>
+
+                                        </small>
+
+                                    </h1>
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Descripción</th>
+                                        <th scope="col">Video</th>
+                                        <th scope="col">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <c:forEach items="#{videosSession.leerVideos()}" var="vi">
+                                        <tr>
+
+                                            <td scope="row">#{vi.pkVidId}</td>
+                                            <td scope="row">#{vi.vidDescripcion}</td>
+                                            <td scope="row">
+                                                <a href="#{vi.vidRutaVideo}">vidio</a>
+                                            </td>
+                                            <td>
+
+                                                <p:commandButton 
+                                                    action="#{videosSession.encontrarVideo(vi)}"
+                                                    icon="bi bi-pencil-square"
+                                                    class="btn "
+                                                    style="background-color: #4b0081; border: #4b0081;"
+                                                    >
+                                                </p:commandButton>
+
+
+                                            </td>
+
+
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </h:form>
+                </div>
+
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6 col-xxl-6">  
+                    <h:form>
+                        <div class="table-responsive">
+                            <table class="table table-secondary table-striped mb-5 table-sm" id="listImagen" >
+                                <thead><h1 class="text-dark"><small>Imágenes 
+                                            <button type="button"
+                                                    class="btn text-light "
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#subirImagen"
+                                                    style="background-color: green">
+                                                <i class="bi bi-cloud-upload me-1"/>Subir
+                                            </button>
+                                        </small>
+
+                                    </h1>
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Descripción</th>
+                                        <th scope="col">Imágenes</th>
+                                        <th scope="col">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <c:forEach items="#{imagenesSession.leerImagen()}" var="im">
+                                        <tr>
+                                            <td scope="row">#{im.pkImgId}</td>
+                                            <td scope="row">#{im.imgDescripcion}</td>
+                                            <td scope="row"><img src="#{im.imgRutaImg}"
+                                                                 alt="" width="100px" heigh="20px" border="radius" class=""></img>
+                                            </td>
+                                            <td>
+                                                <p:commandButton 
+                                                    action="#{imagenesSession.encontrarImagen(im)}"
+                                                    icon="bi bi-pencil-square"
+                                                    class="btn "
+                                                    style="background-color: #4b0081; border: #4b0081;"
+                                                    >
+                                                </p:commandButton>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 ">
+                    <h:form>
+                        <div class="table-responsive">
+                            <table class="table table-secondary table-striped mb-5 table-sm" id="listmultimedia" >
+                                <thead><h1 class="text-dark"><small>Multimedia</small>
+                                        <button type="button"
+                                                class="btn text-light "
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#crearMultimedia"
+                                                style="background-color: green">
+                                            <i class="bi bi-plus-circle me-1"  style="color: white"/>Nuevo
+                                        </button>
+                                    </h1>
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Descripción</th>
+                                        <th scope="col">Imágenes</th>
+                                        <th scope="col">Videos</th>
+                                        <th scope="col">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <c:forEach items="#{multimediaSession.leerMultimedia()}" var="mu">
+                                        <tr>
+
+                                            <td scope="row">#{mu.pkMulId}</td>
+                                            <td scope="row">#{mu.mulDescripcion}</td>
+                                            <td scope="row"> 
+                                                <c:forEach items="#{mu.imagenesCollection}" var="im">
+
+                                                    <img src="#{im.imgRutaImg}"
+                                                         alt="" width="100px" heigh="20px" border="radius" class="mt-1"/><br></br>
+
+
+                                                </c:forEach> 
+                                            </td>
+                                            <td>
+                                                <c:forEach items="#{mu.videosCollection}" var="vi">
+
+                                                    <a href="#{vi.vidRutaVideo}">vidio</a>  
+
+                                                </c:forEach>
+                                            </td> 
+                                            <td>
+
+                                                <p:commandButton 
+                                                    action="#{multimediaSession.encontrarMiltimedia(mu)}"
+                                                    icon="bi bi-pencil-square"
+                                                    class="btn "
+                                                    style="background-color: #4b0081; border: #4b0081;"
+                                                    >
+                                                </p:commandButton>
+
+                                            </td>
+
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <!-- Modal imágen-->
+        <div class="modal fade" id="subirImagen" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header bg-secondary">
+                        <h5 class="modal-title" id="staticBackdropLabel">Subir imagen</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body bg-secondary">
+
+                        <div class="row d-flex justify-content-center align-items-center h-100">
+
+
+                            <h:form >
+
+                                <div class="form-outline mb-2  ">
+
+                                    <h:inputText
+                                        value="#{imagenesSession.imaCre.imgRutaImg}"
+                                        html5:type="text"
+                                        id="formRuta"
+                                        class="form-control form-control-lg   was-validated"
+                                        required="true"
+                                        requiredMessage="Agregar Ruta de Imagen"
+                                        html5:placeholder="Ruta de Imagen"
+                                        />
+                                    <h:message for="formRuta" style="color: red"/>
+
+                                </div>
+
+                                <div class="form-outline mb-2  ">
+
+                                    <h:inputText html5:type="text"
+                                                 id="formDescripcion"
+                                                 class="form-control form-control-lg   was-validated"
+                                                 required="true"
+                                                 requiredMessage="Ingresa Descripción de la Imagen"
+                                                 html5:placeholder="Descripción de la Imagen"
+                                                 value="#{imagenesSession.imaCre.imgDescripcion}"
+                                                 />
+                                    <h:message for="formDescripcion" style="color: red"/>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-block btn-dark mb-4" data-bs-dismiss="modal">Cerrar</button>
+                                    <h:commandButton 
+                                        class="btn btn-block text-light mb-4"
+                                        value="Subir"
+                                        style="background-color: #4b0081"
+                                        action="#{imagenesSession.crearImagen()}">
+                                    </h:commandButton>
+                                </div>
+
+                            </h:form>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal multimedia-->
+        <div class="modal fade" id="crearMultimedia" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header bg-secondary">
+                        <h5 class="modal-title" id="staticBackdropLabel">Crear Multimedia</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body bg-secondary">
+
+                        <div class="row d-flex justify-content-center align-items-center h-100">
+                            <h:form>
+
+
+                                <div class="form-outline mb-4">
+                                    <h:inputText html5:type="text" 
+                                                 id="formMultimedia"
+                                                 class="form-control form-control-lg   was-validated"
+                                                 required="true"
+                                                 requiredMessage="Ingresa la descripcion de la multimedia"
+                                                 html5:placeholder="Descripcion de la multimedia"
+                                                 value="#{multimediaSession.mulCre.mulDescripcion}"
+                                                 />
+                                    <h:message for="formMultimedia" style="color: red"/>
+
+
+                                </div>
+
+                               
+                                <h6 class="mb-1 me-4">Imagen: </h6>
+                                <div class="form-group mb-4">
+                                    <h:selectOneMenu required="true"
+                                                     value="#{multimediaSession.idIma}"
+                                                     requiredMessage="Ingresa el id de la imagen"
+                                                     class="form-select form-select-md mb-3 "
+                                                     html5:aria-label=".form-select-md examplemultiple"  
+                                                     id="formIdIma"
+                                                     >
+                                        <f:selectItem itemLabel="Selecciona..." itemValue="" html5:disabled="true" html5:selected="true"/>
+                                        <c:forEach items="#{imagenesSession.leerImagen()}" var="im">
+                                            <f:selectItem itemLabel="#{im.imgDescripcion}" itemValue="#{im.pkImgId}">
+                                            </f:selectItem>
+                                        </c:forEach>
+                                    </h:selectOneMenu>
+                                    <h:message for="formIdIma" style="color: red"/>
+                                </div>
+
+                                <h6 class="mb-1 me-4">Video: </h6>
+                                <div class="form-group mb-4">
+                                    <h:selectOneMenu required="true"
+                                                     value="#{multimediaSession.idVid}"
+                                                 requiredMessage="Ingresa el id del video"
+                                                     class="form-select form-select-md mb-3 "
+                                                     html5:aria-label=".form-select-md examplemultiple"  
+                                                     id="formIdVid"
+                                                     >
+                                        <f:selectItem itemLabel="Selecciona..." itemValue="" html5:disabled="true" html5:selected="true"/>
+                                        <c:forEach items="#{videosSession.leerVideos()}" var="vi">
+                                            <f:selectItem itemLabel="#{vi.vidDescripcion}" itemValue="#{vi.pkVidId}">
+                                            </f:selectItem>
+                                        </c:forEach>
+                                    </h:selectOneMenu>
+                                    <h:message for="formIdVid" style="color: red"/>
+                                </div>
+
+
+                                <div class="modal-footer">
+                                    <button type="button"
+                                            class="btn btn-block btn-dark "
+                                            data-bs-dismiss="modal">Cerrar</button>
+                                    <h:commandButton 
+                                        class="btn btn-block text-light"
+                                        value="Guardar"
+                                        style="background-color: #4b0081"
+                                        action="#{multimediaSession.crearMultimedia()}"
+                                        >
+                                    </h:commandButton>
+                                </div>
+                            </h:form>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Video-->
+        <div class="modal fade" id="subirVideo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header bg-secondary">
+                        <h5 class="modal-title" id="staticBackdropLabel">Subir Video</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body bg-secondary">
+
+                        <div class="row d-flex justify-content-center align-items-center h-100">
+                            <h:form>
+
+                                <div class="form-outline mb-2  ">
+
+                                    <h:inputText html5:type="text"
+
+                                                 id="formVideo"
+                                                 class="form-control form-control-lg   was-validated"
+                                                 required="true"
+                                                 requiredMessage="Ingresa la Ruta del Video"
+                                                 html5:placeholder="Ruta del Video"
+                                                 value="#{videosSession.vidCre.vidRutaVideo}"
+                                                 />
+                                    <h:message for="formVideo" style="color: red"/>
+
+                                </div>
+
+                                <div class="form-outline mb-2  ">
+
+                                    <h:inputText html5:type="text"
+
+                                                 id="formVideoDescripcion"
+                                                 class="form-control form-control-lg   was-validated"
+                                                 required="true"
+                                                 requiredMessage="Ingresa la descripción del Video"
+                                                 html5:placeholder="Dexcripción del Video"
+                                                 value="#{videosSession.vidCre.vidDescripcion}"
+                                                 />
+                                    <h:message for="formVideoDescripcion" style="color: red"/>
+
+                                </div>
+
+
+                                <div class="modal-footer">
+                                    <button type="button"
+                                            class="btn btn-block btn-dark mb-4"
+                                            data-bs-dismiss="modal">Cerrar</button>
+                                    <h:commandButton 
+                                        class="btn btn-block text-light mb-4"
+                                        value="Subir"
+                                        style="background-color: #4b0081"
+                                        action="#{videosSession.crearVideo()}"
+                                        >
+                                    </h:commandButton>
+                                </div>
+                            </h:form>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </ui:composition>
+</html>

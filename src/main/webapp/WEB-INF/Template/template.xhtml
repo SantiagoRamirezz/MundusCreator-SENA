@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html   xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:html5="http://xmlns.jcp.org/jsf/passthrough"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:head>
+        <meta charset="UTF-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="#{request.contextPath}/assets/css/normal/interfazPerfilUser.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css"/>
+        <link rel="shortcut icon" href="#{request.contextPath}/assets/IMG/Logo2.png"/>
+        <title>MundusCreator</title>
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"
+              />
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.12.1/datatables.min.css"/>
+
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css"/>  
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    </h:head>
+
+    <h:body style="background-color: #acabad">
+
+        <!--barra busqueda-->
+
+        <ui:insert name="areaBusqueda">
+            <ui:include src="areaBusqueda.xhtml"></ui:include>
+        </ui:insert>
+
+        <!--CONTENIDO-->
+
+        <!--sidebar-->
+
+        <div class="container-fluid">
+            <div class="row flex-nowrap" >
+
+                <!--sidebar-->
+                <div class="col-auto col-sm-2 col-md-2 col-lg-2 col-xl-2  px-0 " style="background:-webkit-linear-gradient(bottom,black,rgb(24, 23, 91));">
+                    <div class="d-flex flex-column align-items-center align-items-sm-start  pt-2 ms-3 text-white min-vh-100 ">
+                        <a href="Index.xhtml" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none" >
+                            <span class="fs-5 d-none d-sm-inline mt-2 mb-0" style="border: #b80f22;">Menú</span>
+                        </a>
+
+                        <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                            <ui:insert name="areaMenuVertical">
+                                <ui:include src="areaMenuVertical.xhtml"></ui:include>
+                            </ui:insert>
+                        </ul>
+
+                    </div>
+
+                </div>
+                <!-- area trabajo -->
+
+                <div class="col col-sm-10 col-md-10 col-lg">
+                    <ui:insert name="areaTrabajo">
+                        <ui:include src="areaTrabajo.xhtml"></ui:include>
+                    </ui:insert>    
+
+
+                </div>
+            </div>
+
+        </div>
+
+        <!--footer-->
+
+        <ui:insert name="areaPiePagina">
+            <ui:include src="areaPiePagina.xhtml"></ui:include>
+        </ui:insert> 
+
+        <!-- Option 1: Bootstrap Bundle with Popper -->
+
+        <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
+        <script type="text/javascript" class="bg-secondary">
+             $(document).ready(function () {
+                 $('#listuser').DataTable({
+                     dom: 'Bfrtip',
+                     buttons: [
+                         {
+                             extend: 'excelHtml5',
+                             title: 'ListaUsuarios'
+                         },
+                         {
+                             extend: 'pdfHtml5',
+                             title: 'ListaUsuarios'
+                         }
+                     ]
+                 });
+             });
+        </script>
+
+
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    </h:body>
+
+</html>

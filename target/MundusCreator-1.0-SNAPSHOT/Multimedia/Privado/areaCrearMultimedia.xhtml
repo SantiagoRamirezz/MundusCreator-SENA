@@ -1,0 +1,181 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:html5="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+
+
+        <section class="vh-75 ">
+            <div class="mask d-flex align-items-center h-75">
+                <div class="container h-100 mt-5 mb-5">
+                    <div class="row d-flex justify-content-center align-items-center h-100">
+                        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                            <div class="bg-secondary" style="border-radius: 15px;">
+                                <div class="card-body p-5 text-light">
+                                    <h2 class="text-uppercase text-center mb-5">Crear Multimedia</h2>
+                                    <h:form >
+                                       <h6 class="mb-1 me-4">Imagen: </h6>
+                                  
+                                    <div class="form-outline mb-2  ">
+
+                                        <h:inputText
+                                            value="#{imagenesView.imaCre.imgRutaImg}"
+                                            html5:type="text"
+                                            id="formRuta"
+                                            class="form-control form-control-lg   was-validated"
+                                            required="true"
+                                            requiredMessage="Agregar Ruta de Imagen"
+                                            html5:placeholder="Ruta de Imagen"
+                                            />
+                                        <h:message for="formRuta" style="color: red"/>
+
+                                    </div>
+
+                                    <div class="form-outline mb-2  ">
+
+                                        <h:inputText html5:type="text"
+                                                     id="formDescripcion"
+                                                     class="form-control form-control-lg   was-validated"
+                                                     required="true"
+                                                     requiredMessage="Ingresa Descripción de la Imagen"
+                                                     html5:placeholder="Descripción de la Imagen"
+                                                     value="#{imagenesView.imaCre.imgDescripcion}"
+                                                     />
+                                        <h:message for="formDescripcion" style="color: red"/>
+
+                                    </div>
+                                       
+                                        <h:commandButton 
+                                    class="btn btn-block text-light mb-4"
+                                    value="Subir"
+                                    style="background-color: #4b0081"
+                                    action="#{imagenesView.crearImagen()}">
+                                    </h:commandButton>
+                                    </h:form>
+                                    
+                                    <h:form>
+                                    <h6 class="mb-1 me-4">Video: </h6>
+                                    <div class="form-outline mb-2  ">
+                                       
+                                        <h:inputText html5:type="text"
+                                                     
+                                                     id="formVideo"
+                                                     class="form-control form-control-lg   was-validated"
+                                                     required="true"
+                                                     requiredMessage="Ingresa la Ruta del Video"
+                                                     html5:placeholder="Ruta del Video"
+                                                     value="#{videosView.vidCre.vidRutaVideo}"
+                                                     />
+                                        <h:message for="formVideo" style="color: red"/>
+
+                                    </div>
+                                    
+                                     <div class="form-outline mb-2  ">
+
+                                        <h:inputText html5:type="text"
+                                                     
+                                                     id="formVideoDescripcion"
+                                                     class="form-control form-control-lg   was-validated"
+                                                     required="true"
+                                                     requiredMessage="Ingresa la descripción del Video"
+                                                     html5:placeholder="Dexcripción del Video"
+                                                     value="#{videosView.vidCre.vidDescripcion}"
+                                                     />
+                                        <h:message for="formVideoDescripcion" style="color: red"/>
+
+                                    </div>
+
+                                    <h:commandButton 
+                                    class="btn btn-block text-light mb-4"
+                                    value="Subir"
+                                    style="background-color: #4b0081"
+                                    action="#{videosView.crearVideo()}"
+                                    >
+                                    </h:commandButton>
+                                    
+                                
+                                    </h:form>
+                                    
+                                    <h:form>
+                                     
+                                    <h6 class="mb-1 me-4">Multimedia: </h6>
+                                    <div class="form-outline mb-4">
+                                        <h:inputText html5:type="text" 
+                                                     id="formMultimedia"
+                                                     class="form-control form-control-lg   was-validated"
+                                                     required="true"
+                                                     requiredMessage="Ingresa la descripcion de la multimedia"
+                                                     html5:placeholder="Descripcion de la multimedia"
+                                                     value="#{multimediaView.mulCre.mulDescripcion}"
+                                                     />
+                                        <h:message for="formMultimedia" style="color: red"/>
+
+
+                                    </div>
+                                    
+                                    <div class="form-outline mb-4">
+                                        <h:inputText html5:type="number" 
+                                                     id="formIdIma"
+                                                     class="form-control form-control-lg   was-validated"
+                                                     required="true"
+                                                     requiredMessage="Ingresa el id de la imagen"
+                                                     html5:placeholder="ID de la imagen"
+                                                     value="#{multimediaView.idIma}"
+                                                     />
+                                        <h:message for="formIdIma" style="color: red"/>
+
+
+                                    </div>
+                                    
+                                     <div class="form-outline mb-4">
+                                        <h:inputText html5:type="number" 
+                                                     id="formIdVid"
+                                                     class="form-control form-control-lg   was-validated"
+                                                     required="true"
+                                                     requiredMessage="Ingresa el id del video"
+                                                     html5:placeholder="ID del Video"
+                                                     value="#{multimediaView.idVid}"
+                                                     />
+                                        <h:message for="formIdVid" style="color: red"/>
+
+
+                                    </div>
+
+
+                                
+                                       <div class="modal-footer">
+                                    <h:commandButton 
+                                    class="btn btn-block text-light"
+                                    value="Guardar"
+                                    style="background-color: #4b0081"
+                                    action="#{multimediaView.crearMultimedia()}"
+                                    >
+                                    </h:commandButton>
+                                       </div>
+
+                                </h:form>
+                                    
+                               </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+
+
+
+
+
+    </ui:composition>
+</html>
+

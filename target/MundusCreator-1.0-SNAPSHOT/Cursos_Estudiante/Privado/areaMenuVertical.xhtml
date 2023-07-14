@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+
+    <ui:composition>
+
+        <c:forEach items="#{usuarioSession.usuLog.rolesCollection}" var="rl">
+
+            <li>
+                <a href="../#{rl.rolNombre}/Index.xhtml" class="nav-link px-0 align-middle text-white">
+                    <i class="fs-4 bi-moon-stars"></i> <span class="ms-1 d-none d-sm-inline">#{rl.rolNombre}</span></a>
+                <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
+
+                </ul>
+            </li>
+        </c:forEach>
+
+        <li>
+            <a href="../Estudiante/Index.xhtml" class="nav-link px-0 align-middle text-white">
+                <i class="fs-4 bi-person"></i> <span class="ms-1 d-none d-sm-inline">Perfil</span></a>
+            <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
+
+            </ul>
+        </li>
+
+        <li>
+            <a href="../Cursos_Estudiante/Index.xhtml" class="nav-link px-0 align-middle text-white">
+                <i class="fs-4 bi-book"></i> <span class="ms-1 d-none d-sm-inline">Más cursos</span></a>
+        </li>
+
+
+        <li>
+            <a href="CertificadosUsuarios.xhtml" class="nav-link px-0 align-middle text-white">
+                <i class="fs-4 bi-trophy"></i> <span class="ms-1 d-none d-sm-inline">Certificados</span> </a>
+
+        </li>
+        <li>
+            <a href="../Estudiante/Configuracion.xhtml" class="nav-link px-0 align-middle text-white">
+                <i class="fs-4 bi bi-gear"></i> <span class="ms-1 d-none d-sm-inline">Configuración</span> </a>
+
+        </li>
+
+    </ui:composition>
+</html>

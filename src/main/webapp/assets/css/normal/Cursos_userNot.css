@@ -1,0 +1,21 @@
+
+nav a img{
+    margin: 15px 0 15px 25px;
+}
+
+nav ul li a:hover{
+    background-color: #4b0081;
+}
+
+.gradient-custom {
+
+    background:-webkit-linear-gradient(top,black,rgb(24, 23, 91));
+}
+.dropdown .dropdown-item:hover{
+    background-color: gray !important;
+}
+.lol:hover{
+    background-color: #4b0081 !important;
+}
+
+

@@ -1,0 +1,22 @@
+
+nav{
+    background-color: black;
+}
+nav img{
+    margin: 15px 0 15px 25px;
+}
+
+nav ul li a:hover{
+    background-color: #4b0081 !important;
+}
+#notice img{
+    margin: auto;
+}
+.gradient-custom {
+
+    background:-webkit-linear-gradient(top,black,rgb(24, 23, 91));
+}
+.lol:hover{
+    background-color: #4b0081 !important;
+}
+

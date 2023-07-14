@@ -1,0 +1,242 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:html5="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+
+
+        <section class="vh-75 ">
+            <div class="mask d-flex align-items-center h-75">
+                <div class="container h-100 mt-5 mb-5">
+                    <div class="row d-flex justify-content-center align-items-center h-100">
+                        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                            <div class="bg-secondary" style="border-radius: 15px;">
+                                <div class="card-body p-5 text-light">
+                                    <h2 class="text-uppercase text-center mb-5">Crear Multimedia</h2>
+                                    <h:form >
+                                       <h6 class="mb-1 me-4">Documento: </h6>
+                                  
+                                    <div class="form-outline mb-2  ">
+
+                                        <h:inputText
+                                            value="#{documentosView.docCre.docNombre}"
+                                            html5:type="text"
+                                            id="formDocNom"
+                                            class="form-control form-control-lg   was-validated"
+                                            required="true"
+                                            requiredMessage="Agregar Nombre al documento"
+                                            html5:placeholder="Nombre del documento"
+                                            />
+                                        <h:message for="formDocNom" style="color: red"/>
+
+                                    </div>
+
+                                    <div class="form-outline mb-2  ">
+
+                                        <h:inputText html5:type="text"
+                                                     id="formDescripcionDoc"
+                                                     class="form-control form-control-lg   was-validated"
+                                                     required="true"
+                                                     requiredMessage="Ingresa Descripción del documento"
+                                                     html5:placeholder="Descripción del documento"
+                                                     value="#{documentosView.docCre.docDescripcion}"
+                                                     />
+                                        <h:message for="formDescripcionDoc" style="color: red"/>
+
+                                    </div>
+                                       
+                                        <div class="form-outline mb-2  ">
+
+                                        <h:inputText html5:type="text"
+                                                     id="formRutaDoc"
+                                                     class="form-control form-control-lg   was-validated"
+                                                     required="true"
+                                                     requiredMessage="Ingresa Ruta del documento"
+                                                     html5:placeholder="Ruta del documento"
+                                                     value="#{documentosView.docCre.docDescripcion}"
+                                                     />
+                                        <h:message for="formRutaDoc" style="color: red"/>
+
+                                    </div>
+                                       
+                                        <h:commandButton 
+                                    class="btn btn-block text-light mb-4"
+                                    value="Subir"
+                                    style="background-color: #4b0081"
+                                    action="#{documentosView.crearDocumento()}">
+                                    </h:commandButton>
+                                    </h:form>
+                                    
+                                    <h:form>
+                                    <h6 class="mb-1 me-4">Actividad: </h6>
+                                    
+                                    <div class="form-outline mb-2  ">
+                                       
+                                        <h:inputText html5:type="text"
+                                                     
+                                                     id="formNomAct"
+                                                     class="form-control form-control-lg   was-validated"
+                                                     required="true"
+                                                     requiredMessage="Ingresa el nombre de la actividad"
+                                                     html5:placeholder="Nombre de la Actividad"
+                                                     value="#{actividadesView.actCre.actNombre}"
+                                                     />
+                                        <h:message for="formNomAct" style="color: red"/>
+
+                                    </div>
+                                    
+                                    <div class="form-outline mb-2  ">
+
+                                        <h:inputText html5:type="text"
+                                                     
+                                                     id="formVideoDescripcion"
+                                                     class="form-control form-control-lg   was-validated"
+                                                     required="true"
+                                                     requiredMessage="Ingresa la descripción de la actividad"
+                                                     html5:placeholder="Descripción de la Actividad"
+                                                     value="#{videosView.vidCre.vidDescripcion}"
+                                                     />
+                                        <h:message for="formVideoDescripcion" style="color: red"/>
+
+                                    </div>
+                                    
+                                    <div class="form-outline mb-2  ">
+                                       
+                                        <h:inputText html5:type="text"
+                                                     
+                                                     id="formRutaAct"
+                                                     class="form-control form-control-lg   was-validated"
+                                                     required="true"
+                                                     requiredMessage="Ingresa la Ruta de la actividad"
+                                                     html5:placeholder="Ruta de la Actividad"
+                                                     value="#{actividadesView.actCre.actRuta}"
+                                                     />
+                                        <h:message for="formRutaAct" style="color: red"/>
+
+                                    </div>
+                                    
+                                    <h:commandButton 
+                                    class="btn btn-block text-light mb-4"
+                                    value="Subir"
+                                    style="background-color: #4b0081"
+                                    action="#{actividadesView.crearActividad()}"
+                                    >
+                                    </h:commandButton>
+                                    
+                                
+                                    </h:form>
+                                    
+                                    <h:form>
+                                     
+                                    <h6 class="mb-1 me-4">Evaluación: </h6>
+                                    
+                                    
+                                    <div class="form-outline mb-4">
+                                        <h:inputText html5:type="text" 
+                                                     id="formNombreEva"
+                                                     class="form-control form-control-lg   was-validated"
+                                                     required="true"
+                                                     requiredMessage="Ingresa el nombre de la Evaluación"
+                                                     html5:placeholder="Nombre de la Evaluación"
+                                                     value="#{evaluacionesView.evaCre.evaNombre}"
+                                                     />
+                                        <h:message for="formNombreEva" style="color: red"/>
+                                    </div>
+                                    
+                                     <div class="form-outline mb-4">
+                                        <h:inputText html5:type="text" 
+                                                     id="formDescripcionEva"
+                                                     class="form-control form-control-lg   was-validated"
+                                                     required="true"
+                                                     requiredMessage="Ingresa la descripcion de la Evaluación"
+                                                     html5:placeholder="Descripcion de la Evaluación"
+                                                     value="#{evaluacionesView.evaCre.evaDescripcion}"
+                                                     />
+                                        <h:message for="formDescripcionEva" style="color: red"/>
+
+
+                                    </div>
+
+                                    
+                                    <div class="form-outline mb-4">
+                                        <h:inputText html5:type="text" 
+                                                     id="formRutaEva"
+                                                     class="form-control form-control-lg   was-validated"
+                                                     required="true"
+                                                     requiredMessage="Ingresa la ruta de la Evaluación"
+                                                     html5:placeholder="Ruta de la Evaluación"
+                                                     value="#{evaluacionesView.evaCre.evaRuta}"
+                                                     />
+                                        <h:message for="formRutaEva" style="color: red"/>
+
+
+                                    </div>
+                                    
+                                    <h:commandButton 
+                                    class="btn btn-block text-light mb-4"
+                                    value="Subir"
+                                    style="background-color: #4b0081"
+                                    action="#{evaluacionesView.crearEvaluacion()}"
+                                    >
+                                    </h:commandButton>
+                                    
+
+                                       
+                                </h:form>
+                                    
+                                    <h:form>
+                                        
+                                        
+                                        <h6 class="mb-1 me-4">Papeleria: </h6>
+                                    
+                                    <div class="form-outline mb-2  ">
+                                       
+                                        <h:inputText html5:type="text"
+                                                     
+                                                     id="formNomAct"
+                                                     class="form-control form-control-lg   was-validated"
+                                                     required="true"
+                                                     requiredMessage="Ingresa el nombre de la actividad"
+                                                     html5:placeholder="Nombre de la Actividad"
+                                                     value="#{papeleriaView}"
+                                                     />
+                                        <h:message for="formNomAct" style="color: red"/>
+
+                                    </div>
+                                        
+                                        <div class="modal-footer">
+                                    <h:commandButton 
+                                    class="btn btn-block text-light"
+                                    value="Guardar"
+                                    style="background-color: #4b0081"
+                                    >
+                                    </h:commandButton>
+                                       </div>
+
+                                        
+                                    </h:form>
+                                    
+                               </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+
+
+
+
+
+    </ui:composition>
+</html>
+

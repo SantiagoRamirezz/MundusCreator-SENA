@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:html5="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+
+         <section class="vh-75 ">
+            <div class="mask d-flex align-items-center h-75">
+                <div class="container h-100 mt-5 mb-5">
+                    <div class="row d-flex justify-content-center align-items-center h-100">
+                        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                            <div class="bg-secondary" style="border-radius: 15px;">
+                                <div class="card-body p-5 text-light">
+                                    <h2 class="text-uppercase text-center mb-5">Editar Video</h2>
+                                    
+                                    
+                                    
+                                    <div class="text-center mb-5">
+                                        <iframe width="550px" height="250px" src="#{videosSession.vidExt.vidRutaVideo}"
+                                            title="YouTube video player" frameborder="0"
+                                            allow="accelerometer; autoplay; clipboard-write; 
+                                        encrypted-media; gyroscope; picture-in-picture" >
+                                                
+                                    </iframe>
+                                    </div>
+                                    <h:form>
+                                    <h6 class="mb-1 me-4">Video: </h6>
+                                    <div class="form-outline mb-2  ">
+                                       
+                                        <h:inputText html5:type="text"
+                                                     
+                                                     id="formVideo"
+                                                     class="form-control form-control-lg   was-validated"
+                                                     required="true"
+                                                     requiredMessage="Ingresa la Ruta del Video"
+                                                     html5:placeholder="Ruta del Video"
+                                                     value="#{videosSession.vidExt.vidRutaVideo}"
+                                                     />
+                                        <h:message for="formVideo" style="color: red"/>
+
+                                    </div>
+                                    
+                                     <div class="form-outline mb-2  ">
+
+                                        <h:inputText html5:type="text"
+                                                     
+                                                     id="formVideoDescripcion"
+                                                     class="form-control form-control-lg   was-validated"
+                                                     required="true"
+                                                     requiredMessage="Ingresa la descripción del Video"
+                                                     html5:placeholder="Dexcripción del Video"
+                                                     value="#{videosSession.vidExt.vidDescripcion}"
+                                                     />
+                                        <h:message for="formVideoDescripcion" style="color: red"/>
+
+                                    </div>
+                                     <div class="modal-footer">
+                                    <h:commandButton 
+                                    class="btn btn-block text-light mb-4"
+                                    value="Subir"
+                                    style="background-color: #4b0081"
+                                    action="#{videosSession.editarVideo()}"
+                                    >
+                                    </h:commandButton>
+                                         
+                                         <button 
+                                        type="button" 
+                                        class="btn btn-block text-light mb-4" 
+                                        style="background-color: red"
+                                        data-bs-toggle="modal" 
+                                        data-bs-target="#modalEliminarVideo"
+                                        >
+                                        Eliminar    
+                                    </button>
+                                          
+                                     </div>
+                                
+                                    </h:form>
+                                    
+                                    
+                               </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <h:form>
+        <div class="modal fade" id="modalEliminarVideo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header text-center text-light bg-secondary">
+                        <h5 class="modal-title" id="modalEliminarVideoLabel">¿Estás seguro que quieres eliminar el  Video?</h5>
+                        <button type="button" class="btn-close bg-light" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-center bg-secondary">
+                        <button type="button" class="btn btn-dark " data-bs-dismiss="modal">Cerrar</button>
+                        
+                        <h:commandButton 
+                                class="btn btn-block text-light ms-3"
+                                value="Eliminar"
+                                style="background-color: red"
+                                action="#{videosSession.eliminarVideo()}"
+                                >
+                        </h:commandButton>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+        </h:form>
+
+    </ui:composition>
+</html>
+

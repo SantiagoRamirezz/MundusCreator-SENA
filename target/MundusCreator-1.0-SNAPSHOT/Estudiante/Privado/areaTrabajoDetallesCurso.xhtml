@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:html5="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <section class="vh-75 ">
+
+            <div class="container h-100 mt-5 mb-5">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+
+                    <div class="bg-secondary" style="border-radius: 15px;">
+                        <div class="card-body p-5 text-light">
+                            <h2 class="text-uppercase text-center mb-5">#{usuarioSession.curExt.curNombre}</h2>
+                            <h:form class="row g-3 ">
+
+                                <div class="col-12 col-md-12 col-lg-6 col-xl-6 ">
+
+                                    <h2 class="mb-3 me-4">Actividades: </h2>
+                                    <c:forEach items="#{usuarioSession.curExt.fkPapId.actividadesCollection}" var="act">
+                                        <p>#{act.actDescripcion} <br/></p>
+                                        <a class="link-light" href="#{act.actRuta}">#{act.actNombre}</a>
+                                    </c:forEach>
+
+                                    <h2 class="mb-3 me-4">Documentos: </h2>
+                                    <c:forEach items="#{usuarioSession.curExt.fkPapId.documentosCollection}" var="do">
+                                        <p>#{do.docDescripcion} <br/></p>
+                                        <a class="link-light" href="#{do.docRuta}">#{do.docNombre}</a>
+                                    </c:forEach>
+
+
+                                </div>
+                                <div class="col-12 col-md-12 col-lg-6 col-xl-6 ">
+                                    <h6 class="mb-1 me-4">Video Explicativo: </h6>
+                                    <c:forEach items="#{usuarioSession.curExt.fkMulId.videosCollection}" var="vi">
+                                        <p>#{vi.vidDescripcion}: <br/></p>
+                                        <iframe width="250px" height="175px" src="#{vi.vidRutaVideo}"
+                                                title="YouTube video player" frameborder="0"
+                                                allow="accelerometer; autoplay; clipboard-write; 
+                                                encrypted-media; gyroscope; picture-in-picture">
+                                        </iframe>
+                                    </c:forEach>
+                                </div>
+                            </h:form>
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </section>
+
+
+
+
+
+
+
+
+    </ui:composition>
+</html>
+

@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:html5="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition>
+
+
+
+        
+        <section class="vh-100 text-light ">
+            <div class="container mt-5">
+                
+                
+                <div class="row d-flex justify-content-center align-items-center">
+                    <div class="col-12 col-md-12 col-lg-12 col-xl-8 col-xxl-8">
+                        <div class="card shadow-2-strong" style="border-radius: 1rem; background-color: black;">
+                            <div class="card-body p-5 text-center bg-secondary" >
+
+                                <h3 class="mb-5">Reporte usuarios</h3>
+
+                                <h:form class="row g-3 needs-validation" >
+                                    
+
+                                    
+
+                                    <h:commandButton class="btn  btn-lg btn-block text-light"
+                                                     style="background-color: #b80f22;" 
+                                                     value="Generar reporte"
+                                                     action="#{descargaReporte.download()}">
+                                    </h:commandButton>
+
+                                    <hr class="my-4"/>
+
+
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+    </ui:composition>
+</html>

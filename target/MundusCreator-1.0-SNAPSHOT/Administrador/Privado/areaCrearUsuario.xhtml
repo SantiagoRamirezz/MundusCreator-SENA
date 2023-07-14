@@ -1,0 +1,214 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:html5="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+
+
+        <section class="vh-75 ">
+
+            <div class="container h-100 mt-5 mb-5">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+
+                    <div class="bg-secondary" style="border-radius: 15px;">
+                        <div class="card-body p-5 text-light">
+                            <h2 class="text-uppercase text-center mb-5">Crear Usuario</h2>
+
+                            <h:form class="row g-3 ">
+                               <h6>Roles:</h6>
+                                <div class="form-group mb-4 text-center">
+                                    <div class="mt-1  ">
+                                        <p:selectOneRadio id="rol" value="#{usuarioSession.rol}">
+                                            <f:selectItem itemLabel="Administrador" itemValue="2" />
+                                        </p:selectOneRadio>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-12 col-md-12 col-lg-4 col-xl-6">
+                                    <div class="form-outline mb-4  ">
+                                        <h:inputText
+                                            value="#{usuarioSession.usuReg.usuNombre}"
+                                            html5:type="text"
+                                            id="formNombre"
+                                            class="form-control form-control-lg   "
+                                            required="true"
+                                            requiredMessage="Ingresa un nombre(s)"
+                                            html5:placeholder="Nombre(s)"
+                                            />
+                                        <h:message for="formNombre" style="color: red"/>
+
+                                    </div>
+
+                                    <div class="form-outline mb-4  ">
+
+                                        <h:inputText html5:type="text"
+                                                     id="formApellido"
+                                                     class="form-control form-control-lg "
+
+                                                     required="true"
+                                                     requiredMessage="Ingresa un apellido(s)"
+                                                     html5:placeholder="Apellido(s)"
+                                                     value="#{usuarioSession.usuReg.usuApellido}"
+                                                     />
+                                        <h:message for="formApellido" style="color: red"/>
+
+
+                                    </div>
+
+
+
+                                    <h6 class="mb-1 me-4">Tipo de Documento: </h6>
+                                    <div class="form-group">
+                                        <h:selectOneMenu required="true"
+                                                         value="#{usuarioSession.usuReg.usuTipodedato}"
+                                                         requiredMessage="Ingresa el Tipo de Documento"
+                                                         class="form-select form-select-sm mb-3 w-50 "
+                                                         html5:aria-label=".form-select-sm examplemultiple"  
+                                                         id="formTipoDocumento"
+                                                         >
+                                            <f:selectItem itemLabel="Selecciona..." itemValue="" html5:disabled="ttrue" html5:selected="true"/>
+                                            <f:selectItems value="#{usuarioSession.listaTipDoc}"/>
+                                        </h:selectOneMenu>
+                                        <h:message for="formTipoDocumento" style="color: red"/>
+                                    </div>
+
+
+
+                                    <div class="form-outline mb-4  ">
+
+                                        <h:inputText html5:type="text"
+                                                     id="formDocumento"
+                                                     class="form-control form-control-lg "
+
+                                                     required="true"
+                                                     requiredMessage="Ingresa el Número de Documento"
+                                                     html5:placeholder="Número de Documento"
+                                                     value="#{usuarioSession.usuReg.pkUsuId}"
+                                                     />
+                                        <h:message for="formDocumento" style="color: red"/>
+
+
+                                    </div>
+
+
+
+
+
+                                    <!--Genero-->
+                                    <h6 class="mb-1 me-4">Genero: </h6>
+
+                                    <div class="mb-3  ">
+                                        <p:selectOneRadio id="genero" value="#{usuarioSession.usuReg.usuGenero}" 
+                                                          required="true" requiredMessage="Ingresa una opción">
+                                            <f:selectItem itemLabel="Masculino" itemValue="Masculino" />
+                                            <f:selectItem itemLabel="Femenino" itemValue="Femenino"/>
+                                            <f:selectItem itemLabel="Otro" itemValue="Otro"/>
+                                        </p:selectOneRadio>
+                                        <h:message for="genero" style="color: red"/>
+                                    </div>
+                                </div>
+                                <!--oooooooooooooo-->
+                                <div class="col-12 col-md-12 col-lg-4 col-xl-6">
+                                    <div class="form-outline mb-4">
+                                        <h:inputText html5:type="email" 
+                                                     id="formCorreo"
+                                                     class="form-control form-control-lg "
+
+                                                     required="true"
+                                                     requiredMessage="Ingresa un correo válido"
+                                                     html5:placeholder="Correo electrónico"
+                                                     value="#{usuarioSession.usuReg.usuCorreo}"
+                                                     />
+                                        <h:message for="formCorreo" style="color: red"/>
+
+
+                                    </div>
+
+                                    <div class="form-outline mb-4">
+                                        <h:inputSecret html5:type="password" 
+                                                       id="formContrasenha"
+                                                       class="form-control form-control-lg "
+
+                                                       required="true"
+                                                       requiredMessage="Ingresa una contraseña válida"
+                                                       html5:placeholder="Contraseña"
+                                                       value="#{usuarioSession.usuReg.usuContrasenha}"
+                                                       />
+                                        <h:message for="formContrasenha" style="color: red"/>
+
+
+                                    </div>
+
+
+                                    <h6 class="mb-1 me-4">Fecha de nacimiento: </h6>
+
+                                    <h:message for="fechaNacimiento" style="color: red"/>
+                                    <div class="form-outline mb-4  ">
+
+                                        <h:inputText html5:type="date"
+                                                     id="fechaNacimiento"
+                                                     class="form-control form-control-lg was-validated"
+
+
+                                                     required="true"
+                                                     requiredMessage="Ingresa fecha de nacimiento"
+                                                     html5:placeholder="Foto"
+                                                     value="#{usuarioSession.usuReg.usuFechanac}"
+                                                     />
+                                        <h:message for="foto" style="color: red"/>
+
+
+                                    </div>
+
+                                    <div class="form-outline mb-4  ">
+
+                                        <h:inputText html5:type="text"
+                                                     id="NomUser"
+                                                     class="form-control form-control-lg "
+
+                                                     required="true"
+                                                     requiredMessage="Ingresa el nombre de usuario"
+                                                     html5:placeholder="Nombre de usuario"
+                                                     value="#{usuarioSession.usuReg.usuNomusu}"
+                                                     />
+                                        <h:message for="NomUser" style="color: red"/>
+
+                                    </div>
+
+
+
+                                </div>
+                                <div class="d-flex justify-content-center ">
+
+                                    <h:commandButton value="Crear"
+                                                     action="#{usuarioSession.crearUsuarioAdmin()}" 
+                                                     class="btn btn-success btn-block btn-lg  text-light border-dark"
+                                                     style="background-color: #4b0081; border: #4b0081;"></h:commandButton>
+                                </div>
+
+
+                            </h:form>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </section>
+
+
+
+
+
+    </ui:composition>
+</html>
+

@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:html5="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+
+        <section class="vh-75 ">
+
+            <div class="container h-100 mt-5 mb-5">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+
+                    <div class="bg-secondary" style="border-radius: 15px;">
+                        <div class="card-body p-5 text-light">
+                            <h2 class="text-uppercase text-center mb-5">Editar Curso</h2>
+                            <div class="text-center mb-5">
+                                <img src="#{cursoSession.curExt.curImagen}"  alt="" height="250" width="350px"/>
+                            </div>
+
+                            <h:form class="row g-3 ">
+
+
+                                <div class="form-outline mb-4  ">
+                                    <h:inputText
+                                        html5:type="text"
+                                        id="formNombreCurso"
+                                        class="form-control form-control-lg  "
+                                        style="border: black;" 
+                                        required="true"
+                                        requiredMessage="Ingresa un nombre"
+                                        html5:placeholder="Nombre del Curso"
+                                        value="#{cursoSession.curExt.curNombre}"
+                                        />
+                                    <h:message for="formNombreCurso" style="color: red"/>
+
+                                </div>
+
+                                <div class="form-outline mb-4  ">
+                                    <h:inputText html5:type="text"
+                                                 id="DescripcionCurso"
+                                                 class="form-control form-control-lg "
+                                                 style="border: black;" 
+                                                 value="#{cursoSession.curExt.curDescripcion}"
+                                                 required="true"
+                                                 requiredMessage="Ingresa una descripcion"
+                                                 html5:placeholder="Descripcion del Curso"
+                                                 />
+                                    <h:message for="DescripcionCurso" style="color: red"/>
+                                </div>
+
+                                <h6 class="mb-1 me-4">Fecha de nacimiento: </h6>
+
+                                <h:message for="fechadeCreacion" style="color: red"/>
+                                <div class="form-outline mb-4  ">
+                                    <h:inputText html5:type="date"
+                                                 id="fechadeCreacion"
+                                                 class="form-control form-control-lg"
+                                                 required="true"
+                                                 requiredMessage="Ingresa fecha de creacion"
+                                                 value="#{cursoSession.curExt.curFechaCreacion}"
+                                                 />
+                                </div>
+
+                                <div class="form-outline mb-4  ">
+                                    <h:inputText html5:type="text"
+                                                 id="FotoCurso"
+                                                 class="form-control form-control-lg"
+                                                 html5:placeholder="FotoCurso"
+                                                 required="true"
+                                                 requiredMessage="Ingresa una Imagen"
+                                                 value="#{cursoSession.curExt.curImagen}"
+                                                 />
+                                    <h:message for="fechadeCreacion" style="color: red"/>
+                                </div>
+                                
+                                 <h6 class="mb-1 me-4">Multimedia: </h6>
+                                        <div class="form-group mb-4">
+                                            <h:selectOneMenu required="true"
+                                                             value="#{cursoSession.curExt.fkMulId}"
+                                                             requiredMessage="Ingresa el ID de la multimedia"
+                                                             class="form-select form-select-md mb-3 w-50 "
+                                                             html5:aria-label=".form-select-md examplemultiple"  
+                                                             id="multimedia"
+                                                             >
+                                                <f:selectItem itemLabel="Selecciona..." itemValue="" html5:disabled="true" html5:selected="true"/>
+                                                <c:forEach items="#{multimediaSession.leerMultimedia()}" var="mu">
+                                                    <f:selectItem itemLabel="#{mu.mulDescripcion}" itemValue="#{mu.pkMulId}">
+                                                    </f:selectItem>
+                                                </c:forEach>
+                                            </h:selectOneMenu>
+                                            <h:message for="multimedia" style="color: red"/>
+                                        </div>
+                                
+                                <h6 class="mb-1 me-4">Papeleria: </h6>
+                                        <div class="form-group">
+                                            <h:selectOneMenu required="true"
+                                                             value="#{cursoSession.curExt.fkPapId}"
+                                                             requiredMessage="Ingresa unel ID de la Papelería"
+                                                             class="form-select form-select-md mb-3 w-50 "
+                                                             html5:aria-label=".form-select-md examplemultiple"  
+                                                             id="papeleria"
+                                                             >
+                                                <f:selectItem itemLabel="Selecciona..." itemValue="" html5:disabled="true" html5:selected="true"/>
+                                                <c:forEach items="#{papeleriaSession.leerPapeleria()}" var="pa">
+                                                    <f:selectItem itemLabel="#{pa.papDescripcion}"  itemValue="#{pa.pkPapId}">
+                                                    </f:selectItem>
+                                                </c:forEach>
+                                            </h:selectOneMenu>
+                                           <h:message for="papeleria" style="color: red"/>
+                                        </div>
+                                
+                                <div class="modal-footer">
+                                    <h:commandButton 
+                                        class="btn btn-dark btn-block text-light"
+                                        style="background-color: #4b0081"
+                                        value="Guardar"
+                                        action="#{cursoSession.editarCurso()}"
+                                        >
+                                    </h:commandButton>
+                                </div>
+
+                            </h:form>
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </section>
+
+
+
+    </ui:composition>
+</html>
+

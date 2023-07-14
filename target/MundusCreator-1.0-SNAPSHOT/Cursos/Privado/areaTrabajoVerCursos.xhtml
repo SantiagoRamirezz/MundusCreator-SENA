@@ -1,0 +1,146 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:html5="http://xmlns.jcp.org/jsf/passthrough" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <a  href="../Cursos/CrearCurso.xhtml"
+            class="btn text-light"
+            style="background-color: green">
+            <i class="bi bi-plus-circle" style="color: white">Nuevo</i>
+        </a>
+        <h:form>
+            <div class="table-responsive">
+                <table class="table table-secondary table-striped mb-5 table-sm text-center" id="listcurso">
+                    <thead>
+                        <h1 class="text-dark"><small>Lista De Cursos</small></h1>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">F. de Creación</th>
+                            <th scope="col">Descripcion</th>
+                            <th scope="col">Editar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach items="#{cursoSession.listarCurso()}" var="cu">
+                            <tr>
+
+                                <td scope="row">#{cu.pkCurId}</td>
+                                <td scope="row">#{cu.curNombre}</td>
+                                <td scope="row">#{cu.curFechaCreacion}</td>
+                                <td scope="row">#{cu.curDescripcion}</td>
+                                <td scope="row">
+                                    <h:commandButton class="btn text-light" action="#{cursoSession.encontrarCurso(cu)}"
+                                                     value="Editar" style="background-color: #4b0081">
+                                    </h:commandButton>
+
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
+            </div>
+
+        </h:form>
+        <div class="row">
+            <div class="table-responsive">
+                <table class="table table-secondary table-striped mb-5 table-sm text-center" id="listmultimedia" >
+                    <thead><h1 class="text-dark"><small>Multimedia</small>
+                        </h1>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Descripción</th>
+                            <th scope="col">Imágenes</th>
+                            <th scope="col">Videos</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach items="#{multimediaSession.leerMultimedia()}" var="mu">
+                            <tr>
+
+                                <td scope="row">#{mu.pkMulId}</td>
+                                <td scope="row">#{mu.mulDescripcion}</td>
+                                <td scope="row"> 
+                                    <c:forEach items="#{mu.imagenesCollection}" var="im">
+
+                                        <img src="#{im.imgRutaImg}"
+                                             alt="" width="100px" heigh="20px" border="radius" class="mt-1"/><br></br>
+
+
+                                    </c:forEach> 
+                                </td>
+                                <td>
+                                    <c:forEach items="#{mu.videosCollection}" var="vi">
+
+                                        <a href="#{vi.vidRutaVideo}">vidio</a>  
+
+                                    </c:forEach>
+                                </td> 
+
+
+
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="table-responsive">
+
+                <table class="table table-secondary table-striped mb-5 table-sm text-center" id="listpapeleria" >
+                    <thead><h1 class="text-dark"><small>Papeleria
+                            </small>
+
+                        </h1>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Descripción</th>
+                            <th scope="col">Documentos</th>
+                            <th scope="col">Actividades</th>
+                            <th scope="col">Evaluaciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach items="#{papeleriaSession.leerPapeleria()}" var="pa">
+                            <tr>
+
+                                <td scope="row">#{pa.pkPapId}</td>
+                                <td scope="row">#{pa.papDescripcion}</td>
+                                <td scope="row">
+                                <c:forEach items="#{pa.documentosCollection}" var="do">
+                                    #{do.docNombre}
+                                </c:forEach>
+                                    </td>
+                                 <td scope="row">
+                                <c:forEach items="#{pa.actividadesCollection}" var="ac">
+                                   #{ac.actNombre}
+                                </c:forEach>
+                                     </td>
+                                
+                                    <td scope="row">
+                                    <c:forEach items="#{pa.evaluacionesCollection}" var="cu">
+                                        #{cu.evaNombre}
+                                    </c:forEach>
+                                    </td>
+                                
+
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+
+    </ui:composition>
+
+</html>
